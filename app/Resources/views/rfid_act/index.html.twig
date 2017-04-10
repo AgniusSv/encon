@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Rfid_acts list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Rfidid</th>
+                <th>Readerid</th>
+                <th>Entime</th>
+                <th>Enallowed</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for rfid_act in rfid_acts %}
+            <tr>
+                <td><a href="{{ path('rfid_act_show', { 'id': rfid_act.id }) }}">{{ rfid_act.id }}</a></td>
+                <td>{{ rfid_act.rfidId }}</td>
+                <td>{{ rfid_act.readerId }}</td>
+                <td>{% if rfid_act.enTime %}{{ rfid_act.enTime|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if rfid_act.enAllowed %}Yes{% else %}No{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('rfid_act_show', { 'id': rfid_act.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('rfid_act_edit', { 'id': rfid_act.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('rfid_act_new') }}">Create a new rfid_act</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Rfid_act</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ rfid_act.id }}</td>
+            </tr>
+            <tr>
+                <th>Rfidid</th>
+                <td>{{ rfid_act.rfidId }}</td>
+            </tr>
+            <tr>
+                <th>Readerid</th>
+                <td>{{ rfid_act.readerId }}</td>
+            </tr>
+            <tr>
+                <th>Entime</th>
+                <td>{% if rfid_act.enTime %}{{ rfid_act.enTime|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Enallowed</th>
+                <td>{% if rfid_act.enAllowed %}Yes{% else %}No{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('rfid_act_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('rfid_act_edit', { 'id': rfid_act.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

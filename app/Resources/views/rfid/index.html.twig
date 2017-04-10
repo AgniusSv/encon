@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Rfids list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Rfidid</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for rfid in rfids %}
+            <tr>
+                <td><a href="{{ path('rfid_show', { 'id': rfid.id }) }}">{{ rfid.id }}</a></td>
+                <td>{{ rfid.rfidId }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('rfid_show', { 'id': rfid.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('rfid_edit', { 'id': rfid.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('rfid_new') }}">Create a new rfid</a>
+        </li>
+    </ul>
+{% endblock %}
